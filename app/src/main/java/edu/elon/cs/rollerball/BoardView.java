@@ -1,3 +1,7 @@
+//(c) Patrick Lathan and Elena Sparacio//
+//BoardView class creates the View for the application, and contains methods to//
+//draw the canvas and run the game loop.//
+
 package edu.elon.cs.rollerball;
 
 import android.content.Context;
@@ -6,6 +10,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
+import android.os.Vibrator;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.view.SurfaceHolder;
@@ -17,9 +24,15 @@ public class BoardView extends SurfaceView implements SurfaceHolder.Callback {
     private BoardViewThread thread;
     private SurfaceHolder surfaceHolder;
     private Context context;
+    private Vibrator vibrator;
+    private MediaPlayer mp;
 
     public BoardView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        //vibrator and media player
+        vibrator = (Vibrator) context.getSystemService(context.VIBRATOR_SERVICE);
+        mp = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
 
         // remember the context for finding resources
         this.context = context;
@@ -30,6 +43,8 @@ public class BoardView extends SurfaceView implements SurfaceHolder.Callback {
 
         // game loop thread
         thread = new BoardViewThread();
+
+
     }
 
 
@@ -155,6 +170,8 @@ public class BoardView extends SurfaceView implements SurfaceHolder.Callback {
             ball.doUpdate(tiltX, tiltY);
             if(wonGame) {
                 spot.doUpdate();
+                mp.start();
+                vibrator.vibrate(500);
                 wonGame = false;
             }
         }

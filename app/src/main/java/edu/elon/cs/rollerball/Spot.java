@@ -1,3 +1,7 @@
+//(c) Patrick Lathan and Elena Sparacio//
+//Spot class that contains values associated with the spot as well as//
+//methods to draw, update, and get the location of the spot.//
+
 package edu.elon.cs.rollerball;
 
 import android.content.Context;
@@ -17,7 +21,7 @@ public class Spot {
 
     private int screenWidth, screenHeight;
 
-    private final float SCALE = 0.15f;
+    private final float SCALE = 0.23f;
 
     public Spot(Context context) {
 

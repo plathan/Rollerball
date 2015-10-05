@@ -1,3 +1,7 @@
+//(c) Patrick Lathan and Elena Sparacio//
+//Ball class that contains values associated with the ball as well as//
+//methods to draw, update, and get the location of the ball.//
+
 package edu.elon.cs.rollerball;
 
 import android.content.Context;
@@ -17,7 +21,7 @@ public class Ball {
 
     private int screenWidth, screenHeight;
 
-    private final float SCALE = 0.1f;
+    private final float SCALE = 0.17f;
 
     public Ball(Context context) {
 
